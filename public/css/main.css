@@ -1,0 +1,22 @@
+.horizontal-scrollable {
+    overflow-x: auto;
+}
+
+.listing-title {
+    text-decoration: none; 
+    color:#3a3a3a;
+}
+
+.listing-title:hover {
+    text-decoration: underline; 
+    color:#3a3a3a;
+}
+
+.jsgallery-container .gallery-arrow {
+    font-size: 30px;
+}
+
+.jsgallery-container #jsgall_close {
+    font-size: 30px;
+    right: 0px;
+}
