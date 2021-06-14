@@ -12,6 +12,9 @@ An application created on Laravel framework to post ads like a marketplace. This
 `php artisan serve`
 
 
+## Screenshot
+![souq](https://user-images.githubusercontent.com/11766368/121942667-524b2b80-cd83-11eb-8f0b-b1117b0783a4.png)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
