@@ -4,8 +4,11 @@ An application created on Laravel framework to post ads like a marketplace. This
 
 ## Installation and Setup
 `composer install`
+
 `php artisan migrate`
+
 `php artisan db:seed`
+
 `php artisan serve`
 
 
