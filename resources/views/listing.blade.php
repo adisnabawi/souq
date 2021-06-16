@@ -61,7 +61,7 @@
                     @endif
                     @if(count($ad->image) > 0)
                     <div style="position: absolute;bottom: 8px;left: 16px;background-color:#4c4c4cd1;color:white;padding:5px">
-                        <small>{{ count($ad->image) }}</small>
+                        <small><i class="far fa-images"></i> {{ count($ad->image) }}</small>
                     </div>
                     @endif
                     @if($ad->sold == true)

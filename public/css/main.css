@@ -14,9 +14,15 @@
 
 .jsgallery-container .gallery-arrow {
     font-size: 30px;
+    z-index: 100;
 }
 
 .jsgallery-container #jsgall_close {
     font-size: 30px;
     right: 0px;
+}
+
+a .hoverline:hover {
+    text-decoration: underline; 
+    color:black;
 }

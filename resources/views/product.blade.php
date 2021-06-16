@@ -7,7 +7,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('listing') . '?category=' . $product->cat_id }}">{{ $product->category['cat_name']}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $product->ad_title }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ Str::limit($product->ad_title, 30) }}</li>
         </ol>
         </nav>
     </div>
@@ -34,7 +34,7 @@
         @foreach($product->image as $image)
             <div class="carousel-item {{ $loop->first ? 'active':'' }}">
             
-            <img src="{{ url('storage/' . $image->im_url) }}" class="d-block w-100" alt="..." style="height:500px;object-fit:contain;">
+            <img src="{{ url('storage/' . $image->im_url) }}" class="d-block w-100" alt="..." style="height:450px;object-fit:contain;">
             
             </div>
         @endforeach
@@ -98,6 +98,37 @@
         <td>{{ $product->location['loc_name']}}</td>
        </tr>
        </table>
+    </div>
+
+    <div class="col-md-12">
+        <div class="row">
+        @if($others->isNotEmpty())
+        <div class="col-md-12" style="margin-top: 20px;"><h5>You may also like</h5></div>
+        @endif
+        @foreach($others as $ad)
+            <div class="col-md-3" style="margin-bottom: 20px;">
+                <a href="{{ route('product', ['id'=>$ad->ad_id]) }}" style="text-decoration: none;">
+                <div class="card">
+                    <div style="position:relative">
+                        @if($ad->image->isNotEmpty())
+                        <img src="{{ url('storage/' . $ad->image[0]['im_url']) }}" class="card-img-top" 
+                            alt="..." style="height: 150px;object-fit:cover; width:100%">
+                        @else
+                        <img src="{{ url('empty.jpeg') }}" class="rcard-img-top"
+                            alt="..." style="height: 150px;object-fit:contain;width:100%">
+                        @endif
+                        <div style="position: absolute;top: 8px;left: 16px;background-color:black;color:white;padding:5px">RM 
+                        {{ fmod($product->ad_price,1) !== 0.00 ? number_format($product->ad_price, 2): number_format($ad->ad_price) }}</div>
+                    </div>
+                    
+                    <div class="card-body hoverline">
+                        <p class="card-text" style="color:black;">{{  Str::limit($ad->ad_title,20)}}</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        @endforeach
+        </div>
     </div>
 </div>
 

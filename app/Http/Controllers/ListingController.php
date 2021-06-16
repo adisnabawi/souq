@@ -48,7 +48,9 @@ class ListingController extends Controller
     {
         $product = Ads::with('image', 'category', 'subcategory', 'poster', 'location')->where('ad_id', $request->id)->first();
         if($product){
-            return view('product', compact('product'));
+            $others = Ads::with('image','category')->where('sold', false)->where('cat_id', $product->cat_id)
+                      ->whereNotIn('ad_id', [$product->ad_id])->inRandomOrder()->limit(4)->get();
+            return view('product', compact('product', 'others'));
         }else {
             abort(404);
         }
