@@ -13,13 +13,13 @@ class IndexController extends Controller
     public function index()
     {
         $cats = Category::get();
-        $products = Ads::with('image')->limit(8)->latest()->get();
+        $products = Ads::with('image','status')->whereNotIn('stat_id', [4])->limit(8)->latest()->get();
         return view('welcome', compact('cats', 'products'));
     }
 
     public function dashboard()
     {
-        $products = Ads::with('image', 'category')->where('user_id', Auth()->user()->id)->latest()->paginate(3);
+        $products = Ads::with('image', 'category','status')->where('user_id', Auth()->user()->id)->latest()->paginate(3);
         return view('dashboard', compact('products'));
     }
 }

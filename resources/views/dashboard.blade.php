@@ -23,9 +23,9 @@
                         alt="...">
                     @endif
                     </a>
-                    @if($product->sold == true)
+                    @if($product->stat_id != 1)
                     <div style="position: absolute;bottom: 0px;left:0px;background-color:red;color:#fff;padding:5px; text-align:center; width:100%">
-                        Sold
+                        {{$product->status['stat_name']}}
                     </div>
                     @endif
                 </div>

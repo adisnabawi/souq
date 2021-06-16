@@ -35,4 +35,9 @@ class Ads extends Model
     {
         return $this->hasOne(Location::class, 'loc_id', 'loc_id');
     }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'stat_id', 'stat_id');
+    }
 }

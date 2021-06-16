@@ -10,6 +10,7 @@ use App\Models\Subs;
 use App\Models\Ads;
 use App\Models\Image;
 use App\Models\Location;
+use App\Models\Status;
 use Auth;
 
 class AdsController extends Controller
@@ -123,7 +124,8 @@ class AdsController extends Controller
         if($ad){
             $cats = Category::get();
             $locations = Location::get();
-            return view('ads-edit', compact('ad', 'cats', 'locations'));
+            $status = Status::get();
+            return view('ads-edit', compact('ad', 'cats', 'locations', 'status'));
         }else{
             abort(404);
         }
@@ -135,7 +137,7 @@ class AdsController extends Controller
             'title' => 'required|max:200',
             'description' => 'required',
             'category' => 'required',
-            'status' => 'required|boolean',
+            'status' => 'required|integer',
             'price' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
         ]);
 
@@ -148,7 +150,7 @@ class AdsController extends Controller
             $ad->cat_id = $request->category;
             $ad->sub_id = $request->subcategory;
             $ad->loc_id = $request->location;
-            $ad->sold = $request->status;
+            $ad->stat_id = $request->status;
             $ad->save();
             $adid = $ad->ad_id;
             return redirect()->route('ads.edit', ['id' => $adid])->with('status', 'Success update your ad');

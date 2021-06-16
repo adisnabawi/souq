@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SubCategorySeeder::class,
             LocationSeeder::class,
+            StatusSeeder::class,
         ]);
     }
 }

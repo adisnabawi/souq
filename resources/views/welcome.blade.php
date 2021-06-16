@@ -71,11 +71,11 @@
                         alt="...">
                     @endif
                     </a>
-                    @if($product->sold == true)
-                    <div style="position: absolute;top: 0px;right: 0px;background-color:red;color:white;padding:5px">Sold</div>
+                    @if($product->stat_id != 1)
+                    <div style="position: absolute;top: 0px;right: 0px;background-color:red;color:white;padding:5px">{{$product->status['stat_name']}}</div>
                     @endif
-                    <div style="position: absolute;top: 8px;left: 16px;background-color:black;color:white;padding:5px">RM 
-                    {{ fmod($product->ad_price,1) !== 0.00 ? number_format($product->ad_price, 2): number_format($product->ad_price) }}</div>
+                    <div style="position: absolute;top: 45px;left: 16px;background-color:black;color:white;padding:5px">RM 
+                    {{ fmod($product->ad_price,1) !== 0.00 ? Str::limit(number_format($product->ad_price, 2),8): number_format($product->ad_price) }}</div>
                     <div style="position: absolute;bottom: 0px;left:0px;background-color:#efefefb3;padding:5px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;width:100%">{{$product->ad_title}}</div>
                     </div>
                 </div>

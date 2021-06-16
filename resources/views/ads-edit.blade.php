@@ -22,10 +22,11 @@
         <form action="{{ route('ads.edit.submit', ['id'=>$ad->ad_id]) }}" method="post">
         @csrf
             <div class="mb-3">
-                <label for="title" class="form-label">Status (Sold)</label>
+                <label for="title" class="form-label">Status</label>
                 <select class="form-select" name="status" required>
-                    <option value="0" {{ $ad->sold == false ? 'selected': ''}}>On Sale</option>
-                    <option value="1" {{ $ad->sold == true ? 'selected': ''}}>Sold</option>                 
+                    @foreach($status as $stat)
+                    <option value="{{$stat->stat_id}}" {{ $ad->stat_id == $stat->stat_id ? 'selected': ''}}>{{ $stat->stat_name}}</option>
+                    @endforeach  
                 </select>
             </div>
             <div class="mb-3">

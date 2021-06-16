@@ -47,9 +47,9 @@
             <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
             <span class="visually-hidden">Next</span>
         </button>
-        @if($product->sold == true)
-        <div style="position: absolute;top: 0px;background-color:red;color:white;padding:10px;width:100%; text-align:center">
-            <h4>SOLD</h4>
+        @if($product->stat_id != 1)
+        <div style="position: absolute;top: 0px;background-color: red; color:white; padding:10px;width:100%; text-align:center">
+            <h4>{{$product->status['stat_name']}}</h4>
         </div>
         @endif
     </div>
@@ -57,9 +57,9 @@
         <div style="position:relative">
             <img src="{{ url('empty.jpeg') }}" class="rounded float-left" style="height:500px;width:100%;object-fit:contain;"
                 alt="...">
-            @if($product->sold == true)
+            @if($product->stat_id != 1)
             <div style="position: absolute;top: 0px;background-color:red;color:white;padding:10px;width:100%; text-align:center">
-                <h4>SOLD</h4>
+                <h4>{{$product->status['stat_name']}}</h4>
             </div>
             @endif
         </div>

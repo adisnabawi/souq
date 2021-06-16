@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateAdsTableAddSold extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class UpdateAdsTableAddSold extends Migration
      */
     public function up()
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->integer('stat_id')->default(1);
+        Schema::create('status', function (Blueprint $table) {
+            $table->increments('stat_id');
+            $table->string('stat_name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class UpdateAdsTableAddSold extends Migration
      */
     public function down()
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('status');
     }
 }

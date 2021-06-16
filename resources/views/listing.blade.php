@@ -43,11 +43,32 @@
     </div>
     <div class="col-md-8">
         <div class="row">
-            <h6>
-            Found <b>{{$ads->total()}}</b> 
-            {{ $catname != null ?  $catname->cat_name : 'All Categories' }} in
-            {{ $locname != null ?  $locname->loc_name : 'All Campus' }} 
-            </h6><br><br>
+            <div class="col-md-12" style="margin-bottom: 30px;">
+                <div class="row">
+                    <div class="col-8">
+                        <h6>
+                        Found <b>{{$ads->total()}}</b> 
+                        {{ $catname != null ?  $catname->cat_name : 'All Categories' }} in
+                        {{ $locname != null ?  $locname->loc_name : 'All Campus' }} 
+                        </h6>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="dropdown">
+                        <a class="btn btn-secondary" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                         Sort <i class="fas fa-sort"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item {{ Request::get('sort') == 'pricehightolow' ? 'active':''}}" href="{{ request()->fullUrlWithQuery(['sort' => 'pricehightolow']) }}">Price - High to Low</a></li>
+                            <li><a class="dropdown-item {{ Request::get('sort') == 'pricelowtohigh' ? 'active':''}}" href="{{ request()->fullUrlWithQuery(['sort' => 'pricelowtohigh']) }}">Price - Low to High</a></li>
+                            <li><a class="dropdown-item {{ Request::get('sort') == 'newest' || Request::get('sort') == null ? 'active':''}}" href="{{ request()->fullUrlWithQuery(['sort' => 'newest']) }}"> Newest</a></li>
+                            <li><a class="dropdown-item {{ Request::get('sort') == 'oldest' ? 'active':''}}" href="{{ request()->fullUrlWithQuery(['sort' => 'oldest']) }}">Older first</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             @foreach($ads as $ad)
             <div class="col-md-3">
                 <div style="position: relative;">
@@ -64,9 +85,9 @@
                         <small><i class="far fa-images"></i> {{ count($ad->image) }}</small>
                     </div>
                     @endif
-                    @if($ad->sold == true)
+                    @if($ad->stat_id != 1)
                     <div style="position: absolute;top: 0px;right: 0;background-color:red;color:white;padding:5px">
-                        Sold
+                        {{ $ad->status['stat_name']}}
                     </div>
                     @endif
                 </a>
