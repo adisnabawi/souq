@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Ads extends Model
 {
@@ -39,5 +40,15 @@ class Ads extends Model
     public function status()
     {
         return $this->hasOne(Status::class, 'stat_id', 'stat_id');
+    }
+
+    public function likes()
+    {
+        $id = 0;
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        }
+        return $this->hasOne(Likes::class, 'ad_id', 'ad_id')->where('user_id', $id);
+        
     }
 }

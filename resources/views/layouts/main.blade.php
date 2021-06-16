@@ -39,6 +39,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="{{route('dashboard')}}">My Dashboard</a></li>
+            <li><a class="dropdown-item" href="{{route('like.list')}}">My Likes</a></li>
             <li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

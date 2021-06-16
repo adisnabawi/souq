@@ -34,7 +34,7 @@
         @foreach($product->image as $image)
             <div class="carousel-item {{ $loop->first ? 'active':'' }}">
             
-            <img src="{{ url('storage/' . $image->im_url) }}" class="d-block w-100" alt="..." style="height:450px;object-fit:contain;">
+            <img src="{{ url('storage/' . $image->im_url) }}" class="d-block w-100" alt="..." style="height:450px;object-fit:cover;">
             
             </div>
         @endforeach
@@ -52,6 +52,23 @@
             <h4>{{$product->status['stat_name']}}</h4>
         </div>
         @endif
+        @if($product->likes == null)
+        <form action="{{ route('likes') }}" method="post">
+        @csrf
+                    <input type="hidden" value="{{$product->ad_id}}" name="id">
+        <button type="submit" class="likebtn like-bigger" style="left: 30px; top:20px">
+            <i class="far fa-heart" style="vertical-align: text-top;"></i>
+        </button>
+        </form>
+        @else
+        <form action="{{ route('unlikes') }}" method="post">
+             @csrf
+            <input type="hidden" value="{{ $product->likes['like_id'] }}" name="likeid">
+            <button type="submit" class="likebtn like-bigger liked" style="left: 30px; top:20px">
+                <i class="far fa-heart" style="vertical-align: text-top;"></i>
+            </button>
+        </form>
+        @endif
     </div>
     @else
         <div style="position:relative">
@@ -61,6 +78,23 @@
             <div style="position: absolute;top: 0px;background-color:red;color:white;padding:10px;width:100%; text-align:center">
                 <h4>{{$product->status['stat_name']}}</h4>
             </div>
+            @endif
+            @if($product->likes == null)
+            <form action="{{ route('likes') }}" method="post">
+            @csrf
+                        <input type="hidden" value="{{$product->ad_id}}" name="id">
+            <button type="submit" class="likebtn like-bigger" style="left: 30px; top:20px">
+                <i class="far fa-heart" style="vertical-align: text-top;"></i>
+            </button>
+            </form>
+            @else
+            <form action="{{ route('unlikes') }}" method="post">
+                @csrf
+                <input type="hidden" value="{{ $product->likes['like_id'] }}" name="likeid">
+                <button type="submit" class="likebtn like-bigger liked" style="left: 30px; top:20px">
+                    <i class="far fa-heart" style="vertical-align: text-top;"></i>
+                </button>
+            </form>
             @endif
         </div>
     @endif

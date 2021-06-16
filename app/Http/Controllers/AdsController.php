@@ -11,6 +11,7 @@ use App\Models\Ads;
 use App\Models\Image;
 use App\Models\Location;
 use App\Models\Status;
+use App\Models\Likes;
 use Auth;
 
 class AdsController extends Controller
@@ -158,4 +159,39 @@ class AdsController extends Controller
             abort(401);
         }
     }
+
+    public function likes(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
+        $ad = Ads::where('ad_id', $request->id)->first();
+        if($ad){
+            $exist = Likes::where('ad_id', $request->id)->where('user_id', Auth()->user()->id)->first();
+            if(!$exist){
+                $like = new Likes;
+                $like->ad_id = $request->id;  
+                $like->user_id = Auth()->user()->id;
+                $like->save();
+            }
+            return redirect()->back();
+        }else{
+            abort(404);
+        }
+    }
+
+    public function unlikes(Request $request)
+    {
+        $request->validate([
+            'likeid' => 'required|integer',
+        ]);
+
+        $ad = Likes::where('like_id', $request->likeid)->where('user_id', Auth()->user()->id)->first();
+        if($ad){
+            $ad->delete();
+        }
+        return redirect()->back();
+    }
+
 }

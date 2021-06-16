@@ -32,4 +32,8 @@ Route::post('/edit-ad/submit/{id}', [AdsController::class, 'update'])->name('ads
 
 Route::get('/list', [ListingController::class, 'index'])->name('listing');
 
+Route::post('/like', [AdsController::class, 'likes'])->name('likes')->middleware(['auth']);
+Route::post('/unlike', [AdsController::class, 'unlikes'])->name('unlikes')->middleware(['auth']);
+Route::get('/mylike', [ListingController::class, 'mylikes'])->name('like.list')->middleware(['auth']);
+
 require __DIR__.'/auth.php';

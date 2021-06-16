@@ -9,6 +9,7 @@ use App\Models\Ads;
 use App\Models\Image;
 use App\Models\Location;
 use App\Models\Status;
+use App\Models\Likes;
 use Carbon\Carbon;
 
 class ListingController extends Controller
@@ -67,7 +68,7 @@ class ListingController extends Controller
 
     public function product(Request $request)
     {
-        $product = Ads::with('image', 'category', 'subcategory', 'poster', 'location', 'status')->where('ad_id', $request->id)
+        $product = Ads::with('image', 'category', 'subcategory', 'poster', 'location', 'status', 'likes')->where('ad_id', $request->id)
                  ->whereNotIn('stat_id', [4])->first();
         if($product){
             $others = Ads::with('image','category')->where('stat_id', [1])->where('cat_id', $product->cat_id)
@@ -77,5 +78,11 @@ class ListingController extends Controller
             abort(404);
         }
         
+    }
+
+    public function mylikes(Request $request)
+    {
+        $ads = Likes::with('ads', 'ads.image')->where('user_id', Auth()->user()->id)->paginate(12);
+        return view('mylike', compact('ads'));
     }
 }
