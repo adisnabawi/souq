@@ -31,16 +31,16 @@
     <div class="row">
         <div class="col-6">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-xl-2">
                     <small>
-                        <a href="" style="margin-right: 10px; color:#000;text-decoration:none">
+                        <a href="" style="color:#000;text-decoration:none">
                             <span class="hoverline">About Souq</span>
                         </a>
                     </small>
                 </div>
-                <div class="col-md-6">
+                <div class="col-xl-2">
                     <small>
-                        <a href="" style="margin-right: 10px; color:#000;text-decoration:none">
+                        <a href="" style="color:#000;text-decoration:none">
                             <span class="hoverline">Privacy Policy</span>
                         </a>
                     </small>
