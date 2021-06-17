@@ -11,7 +11,7 @@
     <div class="col-md-8">
         <div class="row">
         @foreach($ads as $product)
-        <div class="col-4" style="margin-bottom: 20px;">
+        <div class="col-md-4" style="margin-bottom: 20px;">
         <a href="{{ route('product', ['id'=>$product->ads['ad_id']]) }}" style="color:black;text-decoration:none">
         <div class="card">
             <div style="position: relative;">

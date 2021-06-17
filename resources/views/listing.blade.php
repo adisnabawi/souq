@@ -74,7 +74,7 @@
                 <div style="position: relative;">
                 <a href="{{route('product', ['id'=>$ad->ad_id])}}">
                     @if($ad->image->isNotEmpty())
-                    <img src="{{ url('storage/' . $ad->image[0]['im_url']) }}" class="rounded float-left" style="width: 100%; height:150px;object-fit:cover;"
+                    <img src="{{ url('storage/' . $ad->image[0]['im_url']) }}" class="rounded float-left" style="width: 100%; height:150px;object-fit:cover;object-position: top;"
                         alt="...">
                     @else
                     <img src="{{ url('empty.jpeg') }}" class="rounded float-left" style="width: 100%; height:150px;object-fit:cover;"

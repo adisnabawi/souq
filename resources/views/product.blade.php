@@ -30,11 +30,11 @@
             <button type="button" data-bs-target="#carouselSouq" data-bs-slide-to="{{$loop->index}}" class="{{ $loop->first ? 'active':'' }}" aria-current="{{ $loop->first ? 'true':'' }}"></button>
         @endforeach
         </div>
-        <div class="carousel-inner" style="height: 500px;object-fit:contain" media="slider">
+        <div class="carousel-inner" style="height: 450px;object-fit:contain; background-color:#efefef" media="slider">
         @foreach($product->image as $image)
             <div class="carousel-item {{ $loop->first ? 'active':'' }}">
             
-            <img src="{{ url('storage/' . $image->im_url) }}" class="d-block w-100" alt="..." style="height:450px;object-fit:cover;">
+            <img src="{{ url('storage/' . $image->im_url) }}" class="d-block w-100" alt="..." style="height:450px;object-fit:contain;">
             
             </div>
         @endforeach
