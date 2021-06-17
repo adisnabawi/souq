@@ -1,5 +1,11 @@
 @extends('layouts.main')
 @section('title', $product->ad_title)
+@if($product->image->isNotEmpty())
+    @section('image',  url('storage/' . $product->image[0]->im_url) )
+@else
+    @section('image',  url('empty.jpeg') )
+@endif
+@section('description', $product->ad_title . ' ('. $product->category['cat_name'] .')')
 @section('content')
 <div class="row">
     <div class="col-md-12" style="font-size: small;">
@@ -130,6 +136,16 @@
        <tr>
         <td>Location</td>
         <td>{{ $product->location['loc_name']}}</td>
+       </tr>
+       <tr>
+           <td colspan="2">
+               <p>Share this ad </p>
+               <div class="sharethis-inline-share-buttons" style="text-align: center;" 
+               data-title="Souq - {{$product->ad_title}}"
+               data-image="{{ $product->image->isNotEmpty() ? url('storage/' . $product->image[0]->im_url) :url('empty.jpeg')}}"
+               ></div>
+               <br>
+           </td>
        </tr>
        </table>
     </div>

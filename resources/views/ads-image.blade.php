@@ -3,6 +3,15 @@
 
 @section('content')
 <div class="row">
+    <div class="col-md-12" style="font-size: small;">
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Upload images - {{ Str::limit($ad->ad_title, 30) }}</li>
+        </ol>
+        </nav>
+    </div>
     <div class="col-md-4">
         <h1>SOUQ: Upload product images</h1>
         <h4>A marketplace for IIUM Community</h4>
