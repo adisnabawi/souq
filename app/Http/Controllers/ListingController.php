@@ -42,6 +42,14 @@ class ListingController extends Controller
             $ads->where('ad_title', 'like', '%' . $request->q . '%');
         }
 
+        if(isset($request->minprice)){
+            $ads->where('ad_price', '>=', $request->minprice);
+        }
+
+        if(isset($request->maxprice)){
+            $ads->where('ad_price', '<=', $request->maxprice);
+        }
+
         $ads->orderBy('stat_id', 'ASC');
         if(isset($request->sort)){
            switch($request->sort){

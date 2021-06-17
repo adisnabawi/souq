@@ -7,24 +7,11 @@
         <div class="card-body">
         <form action="{{ route('listing') }}" method="get">
             <div class="form-row" style="display: inline-block; width:100%">
-                <div class="col form-group" style="margin:5px; float:left; width:35%;">
+                <div class="col form-group" style="margin:2%; float:left; width:46%;">
                 <input type="text" class="form-control" placeholder="What are you looking for?" name="q">
                 </div>
-                <div class="col form-group" style="margin:5px; float:left">
-                <select name="category" class="form-select" ng-model="selectedCat" ng-change="update()" >
-                    <option value="">Select categories</option>
-                    @foreach($categories as $cat)
-                    <option value="{{ $cat->cat_id}}">{{ $cat->cat_name }}</option>                    
-                    @endforeach
-                </select>
-                </div>
-                <div class="col form-group" ng-if="selectedCat !== ''" style="margin:5px; float:left">
-                    <select class="form-select" name="subcategory" ng-model="selectedSub">
-                        <option value="">Select subcategories</option>
-                        <option ng-repeat="sub in subcat" value="@{{sub['sub_id'] }}">@{{sub['sub_name'] }}</option>
-                    </select>
-                </div>
-                <div class="col form-group" style="margin:5px; float:left">
+
+                <div class="col form-group" style="margin:2%; float:left; width:46%">
                 <select name="location" class="form-select">
                     @foreach($locations as $loc)
                     <option value="{{ $loc->loc_id}}" {{ Request::get("location") == $loc->loc_id ? 'selected' :''}}>
@@ -33,7 +20,45 @@
                     @endforeach
                 </select>
                 </div>
-                <div class="col form-group" style="margin:5px; float:left">
+
+                <div class="col form-group" style="margin:2%; float:left;width:46%">
+                <select name="category" class="form-select" ng-model="selectedCat" ng-change="update()" >
+                    <option value="">Select categories</option>
+                    @foreach($categories as $cat)
+                    <option value="{{ $cat->cat_id}}">{{ $cat->cat_name }}</option>                    
+                    @endforeach
+                </select>
+                </div>
+                <div class="col form-group" ng-if="selectedCat !== ''" style="margin:2%; float:left; width:46%">
+                    <select class="form-select" name="subcategory" ng-model="selectedSub">
+                        <option value="">Select subcategories</option>
+                        <option ng-repeat="sub in subcat" value="@{{sub['sub_id'] }}">@{{sub['sub_name'] }}</option>
+                    </select>
+                </div>
+                
+                <div class="col form-group" style="margin:2%; clear:both">
+                 <p style="color:#828282">PRICE</p>
+                <div class="row">
+                    <div class="col-md-6" style="margin-bottom: 5px;">
+                        <div class="row">
+                            <div class="col-2 text-center"><b>RM</b></div>
+                            <div class="col-10">
+                                <input type="number" class="form-control" placeholder="Minimum price" name="minprice" min="0" value="{{ Request::get("minprice") }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 5px;">
+                        <div class="row">
+                            <div class="col-2 text-center"><b>RM</b></div>
+                            <div class="col-10">
+                                <input type="number" class="form-control" placeholder="Maximum price" name="maxprice" min="1" value="{{ Request::get("maxprice") }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                </div>
+                <div class="col form-group" style="margin:5px;clear:both">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search Now</button>
                 </div>
             </div>
