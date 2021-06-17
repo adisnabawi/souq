@@ -23,7 +23,7 @@
 }
 
 a .hoverline:hover {
-    text-decoration: underline; 
+    text-decoration: underline !important; 
     color:black;
 }
 
