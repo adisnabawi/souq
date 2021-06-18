@@ -26,6 +26,7 @@
         @else
             Listed on {{ Carbon\Carbon::parse($product->created_at)->format('M d, h:iA / Y') }}
         @endif
+        | <span style="font-size:small"><i class="far fa-heart"></i> {{$totallike}} likes</span>
     </small>
     </p>
     @if($product->image->isNotEmpty())

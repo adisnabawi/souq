@@ -81,7 +81,8 @@ class ListingController extends Controller
         if($product){
             $others = Ads::with('image','category')->where('stat_id', [1])->where('cat_id', $product->cat_id)
                       ->whereNotIn('ad_id', [$product->ad_id])->inRandomOrder()->limit(4)->get();
-            return view('product', compact('product', 'others'));
+            $totallike = Likes::where('ad_id', $product->ad_id)->count();
+            return view('product', compact('product', 'others', 'totallike'));
         }else {
             abort(404);
         }
