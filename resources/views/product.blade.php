@@ -122,7 +122,7 @@
        </tr>
        <tr>
         <td colspan="2">
-        {{ $product->poster['name']}} <br>
+        <a href="{{ route('profile.index', ['id'=> $product->poster['id']]) }}">{{ $product->poster['name']}} </a><br>
         <small>{{ $product->poster['email']}}</small>
         </td>
        </tr>

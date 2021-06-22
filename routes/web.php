@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdsController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,5 +36,7 @@ Route::get('/list', [ListingController::class, 'index'])->name('listing');
 Route::post('/like', [AdsController::class, 'likes'])->name('likes')->middleware(['auth']);
 Route::post('/unlike', [AdsController::class, 'unlikes'])->name('unlikes')->middleware(['auth']);
 Route::get('/mylike', [ListingController::class, 'mylikes'])->name('like.list')->middleware(['auth']);
+
+Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile.index');
 
 require __DIR__.'/auth.php';
