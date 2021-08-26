@@ -2,6 +2,8 @@
 
 An application created on Laravel framework to post ads like a marketplace. This project intended to help universities or any organizations to host their own marketplace platform. Any contribution is needed to maintain this repository.
 
+Currently is been hosted in <a href="https://souq.iium.edu.my"> souq.iium.edu.my </a> with some customization.
+
 ## Installation and Setup
 `composer install`
 
